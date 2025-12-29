@@ -39,7 +39,12 @@ const errorHandler = (err, req, res, next) => {
       });
       break;
     default:
-      console.log("No Error, All good!");
+      console.log("No Error case matched, sending generic error...");
+      res.json({
+        title: "Error",
+        message: err.message,
+        stackTrace: err.stack,
+      });
       break;
   }
 };
