@@ -57,19 +57,19 @@ const loginUser = asyncHandler(async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1m" }
+      { expiresIn: "1h" }
     );
-    res.status(200).json({ accessToken });
+    return res.status(200).json({ accessToken });
   } else {
     res.status(401);
     throw new Error("Invalid credentials");
   }
 
-  res.json({ message: "login the user" });
+  //res.json({ message: "login the user" });
 });
 
 const currentUser = asyncHandler(async (req, res) => {
-  res.json({ message: "current the user" });
+  res.json(req.user);
 });
 
 module.exports = { registerUser, loginUser, currentUser };
